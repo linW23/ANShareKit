@@ -1,0 +1,24 @@
+PODS:
+  - FXBlurView (1.6.3)
+  - Masonry (0.5.3)
+  - TencentOpenApiSDK (2.3.1.1):
+    - TencentOpenApiSDK/64bit (= 2.3.1.1)
+  - TencentOpenApiSDK/64bit (2.3.1.1)
+  - Weibo (2.4.2)
+  - WeixinSDK (1.4.3)
+
+DEPENDENCIES:
+  - FXBlurView (~> 1.6.3)
+  - Masonry (~> 0.5.3)
+  - TencentOpenApiSDK (~> 2.3.1.1)
+  - Weibo (~> 2.4.2)
+  - WeixinSDK (~> 1.4.3)
+
+SPEC CHECKSUMS:
+  FXBlurView: abe1046285813c4f6e9008abbc324fc5ab32af90
+  Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
+  TencentOpenApiSDK: 424cbfe62e473a5b23bca68634560db4adde94e7
+  Weibo: 8ac9c24884290718ca62da62301165d209f7336c
+  WeixinSDK: 31f0895daf89e3b74163d5520cd1075e677c46dd
+
+COCOAPODS: 0.35.0
