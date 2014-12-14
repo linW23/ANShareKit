@@ -134,6 +134,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        _dismissMode = ANShareSheetDismissModeNone;
+
         _buttonActionBlocks = [NSMutableDictionary dictionary];
         _shareButtons = [NSMutableArray array];
 
@@ -319,8 +321,10 @@
 
     UIButton *backgroundTrigger = [[UIButton alloc] initWithFrame:inView.bounds];
     [backgroundTrigger setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-    [backgroundTrigger addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
 
+    if (self.dismissMode != ANShareSheetDismissModeNone) {
+        [backgroundTrigger addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    }
     [backgroundTrigger setUserInteractionEnabled:NO];
 
     [inView addSubview:backgroundTrigger];

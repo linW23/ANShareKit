@@ -16,6 +16,11 @@ typedef NS_ENUM(NSInteger, ANShareType) {
     ANQQShareType,
 };
 
+typedef NS_ENUM(NSInteger, ANShareSheetDismissMode) {
+    ANShareSheetDismissModeNone,
+    ANShareSheetDismissModeTap, // dismisses the share sheet when tap mask background view
+};
+
 @interface ANShareButton : UIControl
 
 @property (weak, nonatomic) UIImageView *shareImageView;
@@ -40,6 +45,7 @@ typedef NS_ENUM(NSInteger, ANShareType) {
 @property (nonatomic, weak, readonly) UILabel *titleLabel;
 @property (nonatomic, weak, readonly) UIScrollView *shareContainer;
 @property (nonatomic, weak, readonly) UIPageControl *sharePageControl;
+@property (nonatomic, assign) ANShareSheetDismissMode dismissMode;
 
 - (ANShareButton *)addShareButtonForType:(ANShareType)shareType action:(void (^)())action;
 - (ANShareButton *)addShareButton:(NSString *)title icon:(UIImage *)icon action:(void (^)())action;
