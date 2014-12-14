@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = 'ANShareKit'
-  s.version       = '0.9.0'
+  s.version       = '0.9.1'
   s.summary       = 'Sharing feature to Wechat, SinaWeibo, Tencent'
   s.homepage      = 'https://github.com/candyan/ANShareKit'
   s.license       = 'MIT'
