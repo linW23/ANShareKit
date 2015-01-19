@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = 'ANShareKit'
-  s.version       = '0.9.1'
+  s.version       = '0.9.2'
   s.summary       = 'Sharing feature to Wechat, SinaWeibo, Tencent'
   s.homepage      = 'https://github.com/candyan/ANShareKit'
   s.license       = 'MIT'
@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
     core.resources     = 'Resources/ANShareKit.xcassets'
     core.libraries     = 'sqlite3', 'z', 'c++'
     core.frameworks    = 'SystemConfiguration', 'CoreTelephony'
-    core.dependency    'Masonry',    '~> 0.5.3'
-    core.dependency    'FXBlurView', '~> 1.6.3'
+    core.dependency    'Masonry'
+    core.dependency    'FXBlurView'
     core.requires_arc  = true
   end
 
