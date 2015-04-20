@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, ANShareSheetDismissMode) {
 @interface ANShareSheet : UIView <UIScrollViewDelegate> {
     NSMutableArray *_shareButtons;
     NSMutableDictionary *_buttonActionBlocks;
-
+    
     UIButton *_cancelButton;
     UILabel *_titleLabel;
     UIScrollView *_shareContainer;
@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, ANShareSheetDismissMode) {
 @property (nonatomic, weak, readonly) UILabel *titleLabel;
 @property (nonatomic, weak, readonly) UIScrollView *shareContainer;
 @property (nonatomic, weak, readonly) UIPageControl *sharePageControl;
+@property (nonatomic, assign) NSUInteger columnCount;
 @property (nonatomic, assign) ANShareSheetDismissMode dismissMode;
 
 - (ANShareButton *)addShareButtonForType:(ANShareType)shareType action:(void (^)())action;

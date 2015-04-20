@@ -56,7 +56,7 @@
     ANShareButton *button = [[ANShareButton alloc] initWithFrame:CGRectZero];
     button.shareImageView.image = image;
     button.shareTitleLabel.text = title;
-
+    
     return button;
 }
 
@@ -64,16 +64,16 @@
 {
     CGSize imageViewIntrinsicContentSize = self.shareImageView.intrinsicContentSize;
     CGFloat width = imageViewIntrinsicContentSize.width;
-    CGFloat height = imageViewIntrinsicContentSize.height + 4 + self.shareTitleLabel.intrinsicContentSize.height;
+    CGFloat height = imageViewIntrinsicContentSize.height + self.shareTitleLabel.intrinsicContentSize.height;
     return CGSizeMake(width, height);
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
+    
     self.shareImageView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetWidth(self.bounds));
-
+    
     CGSize titleIntrinsicContentSize = self.shareTitleLabel.intrinsicContentSize;
     self.shareTitleLabel.frame = CGRectMake((CGRectGetWidth(self.bounds) - titleIntrinsicContentSize.width) / 2.0,
                                             CGRectGetHeight(self.bounds) - titleIntrinsicContentSize.height,
@@ -86,7 +86,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         _shareImageView = imageView;
         [self addSubview:_shareImageView];
-
+        
         _shareImageView.userInteractionEnabled = NO;
         [_shareImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
@@ -104,11 +104,11 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         [self addSubview:label];
         _shareTitleLabel = label;
-
+        
         _shareTitleLabel.userInteractionEnabled = NO;
         _shareTitleLabel.textAlignment = NSTextAlignmentCenter;
         _shareTitleLabel.font = [UIFont fontWithName:@"helvetica" size:12];
-
+        
         [_shareTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self);
             make.centerX.equalTo(self);
@@ -135,10 +135,11 @@
     if (self) {
         // Initialization code
         _dismissMode = ANShareSheetDismissModeNone;
-
+        _columnCount = 4;
+        
         _buttonActionBlocks = [NSMutableDictionary dictionary];
         _shareButtons = [NSMutableArray array];
-
+        
         _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         [self addSubview:_backgroundImageView];
     }
@@ -155,10 +156,10 @@
         [cancelButton setTitle:NSLocalizedString(@"Cancel", nil) forState:UIControlStateNormal];
         [cancelButton setTitleColor:[UIColor an_colorWithHex:0x9b9b9b] forState:UIControlStateNormal];
         cancelButton.titleLabel.font = [UIFont fontWithName:@"helvetica-Bold" size:16];
-
+        
         [cancelButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
         _cancelButton = cancelButton;
-
+        
         [self addSubview:cancelButton];
     }
     return _cancelButton;
@@ -172,9 +173,9 @@
         titleLabel.font = [UIFont fontWithName:@"helvetica-Bold" size:18.0f];
         [titleLabel setBackgroundColor:[UIColor clearColor]];
         titleLabel.textColor = [UIColor whiteColor];
-
+        
         titleLabel.text = @"分享";
-
+        
         _titleLabel = titleLabel;
         [self addSubview:titleLabel];
     }
@@ -190,9 +191,9 @@
         _shareContainer.pagingEnabled = YES;
         _shareContainer.showsHorizontalScrollIndicator = NO;
         _shareContainer.showsVerticalScrollIndicator = NO;
-
+        
         _shareContainer.delegate = self;
-
+        
         [self addSubview:_shareContainer];
     }
     return _shareContainer;
@@ -203,10 +204,26 @@
     if (_sharePageControl == nil) {
         UIPageControl *pageControl = [[UIPageControl alloc] initWithFrame:CGRectZero];
         _sharePageControl = pageControl;
-
+        
         [self addSubview:_sharePageControl];
     }
     return _sharePageControl;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    [super setBackgroundColor:backgroundColor];
+    if (self.superview != nil) {
+        UIImage *snapshot = [self.superview
+                             snapshotWithFrame:CGRectMake(0, CGRectGetHeight(self.superview.bounds) - self.bounds.size.height,
+                                                          CGRectGetWidth(self.superview.bounds), self.bounds.size.height)];
+        _backgroundImageView.image = [snapshot blurredImageWithRadius:10 iterations:50 tintColor:backgroundColor];
+    }
+}
+
+- (void)setColumnCount:(NSUInteger)columnCount
+{
+    _columnCount = MAX(columnCount, 1);
 }
 
 #pragma mark - layout
@@ -214,37 +231,38 @@
 - (void)layoutShareSheet
 {
     CGRect frame = self.frame;
-    frame.size.height = 257;
+    frame.size.height = 240;
     self.frame = frame;
-
+    
     _backgroundImageView.frame = self.bounds;
-
-    NSUInteger pageCount = ceilf(_shareButtons.count / 3.0);
-
-    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 59);
-    self.shareContainer.frame = CGRectMake(0, 59, CGRectGetWidth(self.bounds), 139);
-    self.cancelButton.frame = CGRectMake(0, CGRectGetHeight(self.bounds) - 59, CGRectGetWidth(self.bounds), 59);
-
+    
+    NSUInteger pageCount = ceilf(_shareButtons.count / (CGFloat)self.columnCount);
+    
+    self.titleLabel.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), 60);
+    self.cancelButton.frame = CGRectMake(0, CGRectGetHeight(self.bounds) - 60, CGRectGetWidth(self.bounds), 60);
+    self.shareContainer.frame = CGRectMake(0, 60, CGRectGetWidth(self.bounds), 120);
+    
     self.sharePageControl.frame =
-        CGRectMake(0, CGRectGetMinY(self.cancelButton.frame) - 4 - 9, CGRectGetWidth(self.bounds), 9);
-
+    CGRectMake(0, CGRectGetMinY(self.cancelButton.frame) - 4 - 9, CGRectGetWidth(self.bounds), 9);
+    
     self.sharePageControl.hidden = (pageCount <= 1);
     self.sharePageControl.numberOfPages = pageCount;
     self.sharePageControl.currentPage = 0;
-
-    static CGFloat const kSharedButtonGap = 50.0f;
-    CGFloat totalWidth = MIN(_shareButtons.count, 3) * 51 + (MIN(_shareButtons.count, 3) - 1) * kSharedButtonGap;
-
+    
+    CGFloat kSharedButtonGap = (CGRectGetWidth(self.bounds) - self.columnCount * 60) / (CGFloat)(self.columnCount + 1);
+    CGFloat totalWidth = MIN(_shareButtons.count, self.columnCount) * 60 +
+    (MIN(_shareButtons.count, self.columnCount) - 1) * kSharedButtonGap;
+    
     CGFloat initalOriginX = (CGRectGetWidth(self.bounds) - totalWidth) / 2;
-
+    
     [_shareButtons enumerateObjectsUsingBlock:^(UIButton *shareButton, NSUInteger idx, BOOL *stop) {
         CGRect buttonFrame = shareButton.frame;
-        buttonFrame.origin.x =
-            initalOriginX + (idx % 3) * (50 + kSharedButtonGap) + floorf(idx / 3) * CGRectGetWidth(self.bounds);
-        buttonFrame.size.height = 70;
-        buttonFrame.size.width = 50;
+        buttonFrame.origin.x = initalOriginX + (idx % self.columnCount) * (60 + kSharedButtonGap) +
+        floorf(idx / self.columnCount) * CGRectGetWidth(self.bounds);
+        buttonFrame.size.height = 75;
+        buttonFrame.size.width = 60;
         shareButton.frame = buttonFrame;
-
+        
         CGPoint buttonCenter = shareButton.center;
         buttonCenter.y = CGRectGetMidY(self.shareContainer.bounds);
         shareButton.center = buttonCenter;
@@ -279,16 +297,16 @@
     switch (shareType) {
         case ANDoubanShareType:
             return [self addShareButton:@"豆瓣" icon:nil action:action];
-
+            
         case ANQQShareType:
             return [self addShareButton:@"QQ" icon:nil action:action];
-
+            
         case ANWeiboShareType:
             return [self addShareButton:@"新浪微博" icon:[UIImage imageNamed:@"sina_weibo"] action:action];
-
+            
         case ANWeixinShareType:
             return [self addShareButton:@"微信" icon:[UIImage imageNamed:@"wechat"] action:action];
-
+            
         case ANWeixinFriendsShareType:
             return [self addShareButton:@"朋友圈" icon:[UIImage imageNamed:@"weixin_timeline"] action:action];
     }
@@ -311,62 +329,62 @@
 {
     if (_shareButtons.count == 0 || [self isDescendantOfView:inView])
         return;
-
-    self.backgroundColor = [UIColor blackColor];
-
+    
     [self setFrame:CGRectMake(0, inView.frame.size.height, inView.frame.size.width, 0)];
     [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin)];
-
+    
     [self layoutShareSheet];
-
+    
     UIButton *backgroundTrigger = [[UIButton alloc] initWithFrame:inView.bounds];
     [backgroundTrigger setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-
+    
     if (self.dismissMode != ANShareSheetDismissModeNone) {
         [backgroundTrigger addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     }
     [backgroundTrigger setUserInteractionEnabled:NO];
-
+    
     [inView addSubview:backgroundTrigger];
     [backgroundTrigger addSubview:self];
-
-    backgroundTrigger.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.36];
-
+    
+    backgroundTrigger.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    
     UIView *maskView = [[UIView alloc] initWithFrame:self.bounds];
     [self insertSubview:maskView aboveSubview:_backgroundImageView];
     maskView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-
+    maskView.backgroundColor = self.backgroundColor;
+    
     UIImage *snapshot = [inView
-        snapshotWithFrame:CGRectMake(0, CGRectGetHeight(inView.bounds) - 257, CGRectGetWidth(inView.bounds), 257)];
-    _backgroundImageView.image = [snapshot blurredImageWithRadius:10 iterations:50 tintColor:[UIColor blackColor]];
-
+                         snapshotWithFrame:CGRectMake(0, CGRectGetHeight(inView.bounds) - 257, CGRectGetWidth(inView.bounds), 257)];
+    _backgroundImageView.image = [snapshot blurredImageWithRadius:10 iterations:50 tintColor:self.backgroundColor];
+    
     [UIView animateWithDuration:.2f
-        delay:0
-        options:UIViewAnimationOptionCurveEaseOut
-        animations:^{
-            CGRect frame = self.frame;
-            frame.origin.y = CGRectGetHeight(inView.bounds) - self.frame.size.height;
-            self.frame = frame;
-        }
-        completion:^(BOOL finished) { [backgroundTrigger setUserInteractionEnabled:YES]; }];
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         CGRect frame = self.frame;
+                         frame.origin.y = CGRectGetHeight(inView.bounds) - self.frame.size.height;
+                         self.frame = frame;
+                     }
+                     completion:^(BOOL finished) {
+                         [backgroundTrigger setUserInteractionEnabled:YES];
+                     }];
 }
 
 - (void)dismiss
 {
     [self.superview setUserInteractionEnabled:NO];
     [UIView animateWithDuration:.2f
-        delay:0
-        options:UIViewAnimationOptionCurveEaseIn
-        animations:^{
-            CGRect frame = self.frame;
-            frame.origin.y = self.superview.bounds.size.height;
-            self.frame = frame;
-        }
-        completion:^(BOOL finished) {
-            [self.superview removeFromSuperview];
-            [self removeFromSuperview];
-        }];
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         CGRect frame = self.frame;
+                         frame.origin.y = self.superview.bounds.size.height;
+                         self.frame = frame;
+                     }
+                     completion:^(BOOL finished) {
+                         [self.superview removeFromSuperview];
+                         [self removeFromSuperview];
+                     }];
 }
 
 #pragma mark - UIScroll Delegate

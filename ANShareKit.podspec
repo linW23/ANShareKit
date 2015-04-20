@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = 'ANShareKit'
-  s.version       = '0.9.2'
+  s.version       = '1.0.0'
   s.summary       = 'Sharing feature to Wechat, SinaWeibo, Tencent'
   s.homepage      = 'https://github.com/candyan/ANShareKit'
   s.license       = 'MIT'
@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Tencent' do |ts|
     ts.source_files  = 'Classes/Category/Tencent/*.{h,m}'
-    ts.dependency 'TencentOpenApiSDK',    '~> 2.3.1.2'
+    ts.dependency 'TencentOpenApiSDK',    '~> 2.9'
     ts.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_TENCENT_SHARE=1'}
     ts.dependency 'ANShareKit/Core'
     ts.frameworks   = 'TencentOpenAPI'
