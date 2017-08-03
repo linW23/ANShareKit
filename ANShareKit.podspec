@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'SinaWeibo' do |swbs|
     swbs.source_files  = 'Classes/Category/SinaWeibo/*.{h,m}'
-    swbs.dependency 'WeiboSDK',             '~>3.2.0'
+    swbs.dependency 'WeiboSDK',             '~>3.1.3'
     swbs.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_SINAWB_SHARE=1'}
     swbs.dependency 'ANShareKit/Core'
   end
