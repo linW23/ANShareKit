@@ -7,7 +7,7 @@
 //
 
 #import "ANShareKit.h"
-#import <Weibo/WeiboSDK.h>
+#import <WeiboSDK.h>
 
 @interface ANShareKit (SinaWeibo)
 
