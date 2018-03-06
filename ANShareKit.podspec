@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = 'ANShareKit'
-  s.version       = '1.1.0'
+  s.version       = '1.1.1'
   s.summary       = 'Sharing feature to Wechat, SinaWeibo, Tencent'
   s.homepage      = 'https://github.com/candyan/ANShareKit'
   s.license       = 'MIT'
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Weixin' do |wxs|
     wxs.source_files  = 'Classes/Category/Weixin/*.{h,m}'
-    wxs.dependency 'WeixinSDK',         '~>1.8.2'
+    wxs.dependency 'ETWechatSDK'
     wxs.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_WEIXIN_SHARE=1'}
     wxs.dependency 'ANShareKit/Core'
   end
