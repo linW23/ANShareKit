@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Weixin' do |wxs|
     wxs.source_files  = 'Classes/Category/Weixin/*.{h,m}'
-    wxs.dependency 'XXWeChatSDK', '~> 1.8.2'
+    wxs.dependency 'XXWeChatSDK', '~>1.8.2'
     wxs.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_WEIXIN_SHARE=1'}
     wxs.dependency 'ANShareKit/Core'
   end
