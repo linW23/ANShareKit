@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = 'ANShareKit'
-  s.version       = '1.1.1'
+  s.version       = '1.2.0'
   s.summary       = 'Sharing feature to Wechat, SinaWeibo, Tencent'
   s.homepage      = 'https://github.com/candyan/ANShareKit'
   s.license       = 'MIT'
@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'SinaWeibo' do |swbs|
     swbs.source_files  = 'Classes/Category/SinaWeibo/*.{h,m}'
-    swbs.dependency 'WeiboSDK',             '~>3.1.3'
+    swbs.dependency 'Weibo_SDK',             '~>3.2.3'
     swbs.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_SINAWB_SHARE=1'}
     swbs.dependency 'ANShareKit/Core'
   end
