@@ -7,7 +7,7 @@
 //
 
 #import "ANShareKit.h"
-#import <WeixinSDK/WXApi.h>
+#import <XXWeChatSDK/WXApi.h>
 
 @interface ANShareKit (Weixin)
 
