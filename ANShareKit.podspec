@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author        = { 'Candyan' => 'liuyanhp@gmail.com' }
   s.platform      = :ios, '6.0'
   s.source        = {
-      :git => 'https://github.com/candyan/ANShareKit.git',
+      :git => 'https://github.com/madiyl/ANShareKit.git',
       :tag => s.version.to_s
   }
 
