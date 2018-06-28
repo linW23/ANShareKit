@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.name          = 'ANShareKit'
   s.version       = '1.2.0'
   s.summary       = 'Sharing feature to Wechat, SinaWeibo, Tencent'
-  s.homepage      = 'https://github.com/madiyl/ANShareKit.git'
+  s.homepage      = 'https://github.com/madiyl/ANShareKit'
   s.license       = 'MIT'
   s.author        = { 'Candyan' => 'liuyanhp@gmail.com' }
   s.platform      = :ios, '6.0'
