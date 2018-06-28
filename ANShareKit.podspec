@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
     ts.dependency 'FBTencentOpenAPI',    '~> 3.3.3'
     ts.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_TENCENT_SHARE=1'}
     ts.dependency 'ANShareKit/Core'
-    ts.frameworks   = 'FBTencentOpenAPI'
+    ts.frameworks   = 'TencentOpenAPI'
   end
 
   s.subspec 'Tencent-32bit' do |ts32|
