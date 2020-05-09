@@ -12,10 +12,10 @@
 
 #pragma mark - Register
 
-- (void)registerAppToWXAppID:(NSString *)wxAppID
-{
-    if (wxAppID)
-        [WXApi registerApp:wxAppID];
+- (void)registerAppToWxAppID:(NSString *)wxAppID UniversalLink:(NSString *)link {
+    if (wxAppID && link) {
+        [WXApi registerApp:wxAppID universalLink:link];
+    }
 }
 
 @end

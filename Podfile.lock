@@ -4,21 +4,31 @@ PODS:
   - TencentOpenApiSDK (2.9.0):
     - TencentOpenApiSDK/Basic (= 2.9.0)
   - TencentOpenApiSDK/Basic (2.9.0)
+  - WechatOpenSDK (1.8.7.1)
   - Weibo (2.4.2)
-  - WeixinSDK (1.4.3)
 
 DEPENDENCIES:
   - FXBlurView (~> 1.6.3)
   - Masonry (~> 0.5.3)
   - TencentOpenApiSDK (~> 2.9.0)
+  - WechatOpenSDK (= 1.8.7.1)
   - Weibo (~> 2.4.2)
-  - WeixinSDK (~> 1.4.3)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FXBlurView
+    - Masonry
+    - TencentOpenApiSDK
+    - WechatOpenSDK
+    - Weibo
 
 SPEC CHECKSUMS:
   FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
   Masonry: 9f515466afe48632562342a40a1c224071a1a022
   TencentOpenApiSDK: 2c8be7f99581df17570d6d87adefbd5db4ce7721
+  WechatOpenSDK: 6a4d1436c15b3b5fe2a0bd383f3046010186da44
   Weibo: ed569ffed6eb043a159ac3b01dc5122b4e1fd77a
-  WeixinSDK: 012c72fbaf8cef68afa7b0d0bb81c67a7a5c9136
 
-COCOAPODS: 0.36.3
+PODFILE CHECKSUM: 5a1c034774b8daadddb55e9bdcffa965c2f19b67
+
+COCOAPODS: 1.7.5

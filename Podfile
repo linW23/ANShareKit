@@ -1,11 +1,11 @@
 # Uncomment this line to define a global platform for your project
-platform :ios, '6.0'
+platform :ios, '8.0'
 
 xcodeproj './ANShareKitDemo/ANShareKitDemo.xcodeproj'
 
 target 'ANShareKitDemo' do
 
-pod 'WeixinSDK',            '~>1.4.3'
+pod 'WechatOpenSDK',            '1.8.7.1'
 pod 'Weibo',                '~>2.4.2'
 pod 'TencentOpenApiSDK',    '~> 2.9.0'
 pod 'Masonry',              '~> 0.5.3'
