@@ -3,12 +3,12 @@ Pod::Spec.new do |s|
   s.name          = 'ANShareKit'
   s.version       = '1.2.0'
   s.summary       = 'Sharing feature to Wechat, SinaWeibo, Tencent'
-  s.homepage      = 'https://github.com/madiyl/ANShareKit'
+  s.homepage      = 'https://github.com/linW23/ANShareKit'
   s.license       = 'MIT'
-  s.author        = { 'Candyan' => 'liuyanhp@gmail.com' }
+  s.author        = { 'LinW23' => '630280758@qq.com' }
   s.platform      = :ios, '6.0'
   s.source        = {
-      :git => 'https://github.com/madiyl/ANShareKit.git',
+      :git => 'https://github.com/linW23/ANShareKit',
       :tag => s.version.to_s
   }
 
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Weixin' do |wxs|
     wxs.source_files  = 'Classes/Category/Weixin/*.{h,m}'
-    wxs.dependency 'XXWeChatSDK', '~>1.8.2'
+    wxs.dependency 'WechatOpenSDK', '1.8.7.1'
     wxs.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_WEIXIN_SHARE=1'}
     wxs.dependency 'ANShareKit/Core'
   end
