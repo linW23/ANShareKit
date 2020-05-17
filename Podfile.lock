@@ -1,24 +1,40 @@
 PODS:
   - FXBlurView (1.6.3)
   - Masonry (0.5.3)
-  - TencentOpenApiSDK (2.9.0):
-    - TencentOpenApiSDK/Basic (= 2.9.0)
-  - TencentOpenApiSDK/Basic (2.9.0)
-  - Weibo (2.4.2)
-  - WeixinSDK (1.4.3)
+  - TencentOpenAPI (3.3.9)
+  - WechatOpenSDK (1.8.6.2)
+  - Weibo_SDK (3.2.7)
 
 DEPENDENCIES:
   - FXBlurView (~> 1.6.3)
   - Masonry (~> 0.5.3)
-  - TencentOpenApiSDK (~> 2.9.0)
-  - Weibo (~> 2.4.2)
-  - WeixinSDK (~> 1.4.3)
+  - TencentOpenAPI (from `https://github.com/linW23/TencentOpenAPI.git`)
+  - WechatOpenSDK (~> 1.8.6.2)
+  - Weibo_SDK (~> 3.2.7)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FXBlurView
+    - Masonry
+    - WechatOpenSDK
+    - Weibo_SDK
+
+EXTERNAL SOURCES:
+  TencentOpenAPI:
+    :git: https://github.com/linW23/TencentOpenAPI.git
+
+CHECKOUT OPTIONS:
+  TencentOpenAPI:
+    :commit: e71a73e9283c9570314b0cf838d5ec90f7e2edd7
+    :git: https://github.com/linW23/TencentOpenAPI.git
 
 SPEC CHECKSUMS:
   FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
   Masonry: 9f515466afe48632562342a40a1c224071a1a022
-  TencentOpenApiSDK: 2c8be7f99581df17570d6d87adefbd5db4ce7721
-  Weibo: ed569ffed6eb043a159ac3b01dc5122b4e1fd77a
-  WeixinSDK: 012c72fbaf8cef68afa7b0d0bb81c67a7a5c9136
+  TencentOpenAPI: b9ea9322868a6bcf107a3172e8347b4201983a1b
+  WechatOpenSDK: 8b3ba4239193d1112205c139c94e21934e8f369a
+  Weibo_SDK: 5a4d08f7e1fedbb635435e4585c8c0439c7da089
 
-COCOAPODS: 0.36.3
+PODFILE CHECKSUM: f0f61a6b6199bd756b2de28063e3d3080fc555b6
+
+COCOAPODS: 1.7.5

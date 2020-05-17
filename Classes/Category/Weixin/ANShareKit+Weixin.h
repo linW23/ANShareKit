@@ -7,10 +7,10 @@
 //
 
 #import "ANShareKit.h"
-#import <XXWeChatSDK/WXApi.h>
+#import <WechatOpenSDK/WXApi.h>
 
 @interface ANShareKit (Weixin)
 
-- (void)registerAppToWXAppID:(NSString *)wxAppID;
+- (void)registerAppToWXAppID:(NSString *)wxAppID andUniversalLink:(NSString *)link;
 
 @end
