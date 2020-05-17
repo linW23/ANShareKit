@@ -24,21 +24,21 @@ Pod::Spec.new do |s|
 
   s.subspec 'Weixin' do |wxs|
     wxs.source_files  = 'Classes/Category/Weixin/*.{h,m}'
-    wxs.dependency 'XXWeChatSDK', '~>1.8.2'
+    wxs.dependency 'WechatOpenSDK', '~>1.8.6.2'
     wxs.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_WEIXIN_SHARE=1'}
     wxs.dependency 'ANShareKit/Core'
   end
 
   s.subspec 'SinaWeibo' do |swbs|
     swbs.source_files  = 'Classes/Category/SinaWeibo/*.{h,m}'
-    swbs.dependency 'Weibo_SDK',             '~>3.2.3'
+    swbs.dependency 'Weibo_SDK',             '~>3.2.7'
     swbs.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_SINAWB_SHARE=1'}
     swbs.dependency 'ANShareKit/Core'
   end
 
   s.subspec 'Tencent' do |ts|
     ts.source_files  = 'Classes/Category/Tencent/*.{h,m}'
-    ts.dependency 'FBTencentOpenAPI',    '~> 3.3.3'
+    ts.dependency 'TencentOpenAPI',    :git=>"https://github.com/linW23/TencentOpenAPI.git"
     ts.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_TENCENT_SHARE=1'}
     ts.dependency 'ANShareKit/Core'
     ts.frameworks   = 'TencentOpenAPI'
