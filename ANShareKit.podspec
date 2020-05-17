@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Tencent' do |ts|
     ts.source_files  = 'Classes/Category/Tencent/*.{h,m}'
-    ts.dependency 'TencentOpenAPI',    :git=>"https://github.com/linW23/TencentOpenAPI.git"
+    ts.dependency 'TencentOpenAPI',    '~> 3.3.3'
     ts.xcconfig = {"GCC_PREPROCESSOR_DEFINITIONS" => 'AN_TENCENT_SHARE=1'}
     ts.dependency 'ANShareKit/Core'
     ts.frameworks   = 'TencentOpenAPI'
